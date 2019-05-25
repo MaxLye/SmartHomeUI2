@@ -7,10 +7,6 @@
   <link rel="stylesheet" href="./css/backIcon.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="./JS/devices.js"></script>
-  <script>
-    var devices = ["壁灯", "浴盆灯", "抽风机"];
-    var switches = [false, false, false];
-  </script>
 </head>
 
 <body>
@@ -23,7 +19,7 @@
   </div>
   <script>
     $(document).ready(function (e) {
-      loadDevices(devices, switches);
+      loadDevices("privateBathroom");
     });
   </script>
 </body>
