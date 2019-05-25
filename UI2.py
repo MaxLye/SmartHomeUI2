@@ -8,6 +8,10 @@ app.wsgi_app = ProxyFix(app.wsgi_app)
 @app.route('/<area>')
 def root():
   return render_template('testFlask.html', area = area)
+  
+@app.route('/')
+def root():
+  return "Connection Successful"
 
 
 if __name__ == "__main__":
