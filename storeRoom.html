@@ -1,0 +1,31 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/switch.css">
+  <link rel="stylesheet" href="./css/background.css">
+  <link rel="stylesheet" href="./css/backIcon.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="./JS/devices.js"></script>
+  <script>
+    var devices = ["壁灯"];
+    var switches = [false];
+  </script>
+</head>
+
+<body>
+  <div id=background></div>
+  <div id=back><a href="./index.html"><img src="./Img/house.svg" alt="Back"></a></div>
+  <h1 align=center>儲藏室</h1>
+  <div align=center>
+    <table border=1 id=devices>
+    </table>
+  </div>
+  <script>
+    $(document).ready(function (e) {
+      loadDevices(devices, switches);
+    });
+  </script>
+</body>
+
+</html>
