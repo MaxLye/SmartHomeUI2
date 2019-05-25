@@ -2,6 +2,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from flask import Flask,jsonify,request,render_template
 import requests
 import json
+app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 @app.route('/<area>')
 def root():
