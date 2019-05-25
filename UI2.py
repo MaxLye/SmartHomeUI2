@@ -6,9 +6,9 @@ app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
 @app.route('/<area>')
-def root():
+def area():
   return render_template('testFlask.html', area = area)
-  
+
 @app.route('/')
 def root():
   return "Connection Successful"
