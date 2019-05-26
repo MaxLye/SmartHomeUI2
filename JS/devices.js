@@ -18,5 +18,6 @@ function turnSwitch(EName,area){
   var status = $('#'+EName).prop('checked')?"on":"off";
   $.post("http://192.168.31.16:8000/action/"+area+"/"+EName+"/"+status,{"token":"abc123"}, function(data){
     console.log(data);
+    location.reload();
   });
 }
