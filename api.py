@@ -2,7 +2,9 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from flask import Flask,jsonify,request
 from flask_cors import CORS
 import mysql.connector
+import datetime
 import requests
+import hashlib
 import json
 
 app = Flask(__name__)
@@ -46,7 +48,8 @@ def action(area,switch,action):
         resp['switchStatus'] = actionToMake
         targetAddress = "https://"+rows[0][1]
         # print("TargetAddress : "+targetAddress)
-        response = requests.get(targetAddress+"/"+actionToMake,params={'id': switch})
+        # response = requests.get(targetAddress+"/"+actionToMake,params={'id': resp['switchID']})
+        response = requests.get(targetAddress+"/"+actionToMake,params={'switch': switch})
         resp['message'] = (response.content).decode("utf-8")
       query = "update switch set Status = "+('1' if actionToMake == "turnOn" else '0')+" where ID = "+str(resp['switchID'])
       cursor.execute(query)
@@ -86,6 +89,25 @@ def loadItem(area):
   for result in rv:
     json_data.append(dict(zip(row_headers,result)))
   return json.dumps(json_data)
+  pass
+
+@app.route('/login',methods=['POST'])
+def login():
+  data = request.form.to_dict(flat=False)
+  query = "select * from user where Name='"+data['uname'][0]+"' and Password='"+data['psw'][0]+"'"
+  cursor.execute(query)
+  rows = cursor.fetchall()
+  if (cursor.rowcount == 1):
+    currentDT = datetime.datetime.now()
+    md5 = hashlib.md5(str(currentDT).encode('utf-8')).hexdigest()
+    print(md5)
+    query = "update user set Token='"+md5+"' where Name='"+data['uname'][0]+"' and Password='"+data['psw'][0]+"'"
+    cursor.execute(query)
+    if cursor.rowcount == 1:
+      print("<script>document.cookie = \"token="+md5+";Domain="+data['hostname'][0]+"\";window.location.href = \""+data['href'][0]+"home.html\";</script>")
+      return "<script>document.cookie = \"token="+md5+";Domain="+data['hostname'][0]+"\";window.location.href = \""+data['href'][0]+"home.html\";</script>"
+  else:
+    return "<script>alert('Login Error\nPlease try again');</script>"
   pass
 
 if __name__ == "__main__":
