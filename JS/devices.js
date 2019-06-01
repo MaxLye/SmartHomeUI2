@@ -1,7 +1,6 @@
-var server = "http://home.ahlye.com:30888/"
 function loadDevices(area) {
-  getServerHost();
-  $.get(server+"loaditems/" + area, function (data) {
+  console.log(getServerHost()+"loaditems/" + area);
+  $.get(getServerHost()+"loaditems/" + area, function (data) {
     var doc = "";
     console.log(data);
     var itemList = JSON.parse(data);
@@ -17,9 +16,10 @@ function loadDevices(area) {
 }
 
 function turnSwitch(EName,area){
+  console.log(getServerHost());
   getServerHost();
   var status = $('#'+EName).prop('checked')?"on":"off";
-  $.post(server+"action/"+area+"/"+EName+"/"+status,{"token":readCookie("token")}, function(data){
+  $.post(getServerHost()+"action/"+area+"/"+EName+"/"+status,{"token":readCookie("token")}, function(data){
     console.log(data);
     location.reload();
   });
@@ -52,10 +52,10 @@ function eraseCookie(cname) {
 function getServerHost(){
   if(window.location.hostname == "home.ahlye.com")
   {
-    return "http://home.ahlye.com:30888";
+    return "http://home.ahlye.com:30888/";
   }
   else
   {
-    return "http://192.168.31.16:8000";
+    return "http://192.168.31.16:8000/";
   }
 }
