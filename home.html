@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./JS/imageMapResizer.min.js"></script>
+    <link rel="stylesheet" href="./css/background.css">
+    <title>智能家庭开关</title>
+  </head>
+  <body >
+    <div id=background></div>
+    <h1 align=center>智能家庭开关</h1>
+    <div align=center>
+        <img src="./Img/layout.png" usemap="#image-map" height=85% alt>
+        <map name="image-map">
+            <area target="" alt="客厅" title="客厅" href="./livingRoom.html" coords="176,48,724,43,733,1126,588,854,150,850" shape="poly">
+            <area target="" alt="储藏室" title="储藏室" href="./storeRoom.html" coords="150,978,295,1359" shape="rect">
+            <area target="" alt="厨房" title="厨房" href="./kitchen.html" coords="728,44,1044,592" shape="rect">
+            <area target="" alt="饭厅" title="饭厅" href="./diningRoom.html" coords="733,1127,1088,802" shape="rect">
+            <area target="" alt="公浴室" title="公浴室" href="./sharedBathroom.html" coords="1079,35,1635,44,1644,316,1281,320,1276,487,1079,482" shape="poly">
+            <area target="" alt="茶房" title="茶房" href="./guestRoom.html" coords="321,864,579,868,728,1140,1070,1144,1075,1359,312,1372" shape="poly">
+            <area target="" alt="走廊" title="走廊" href="./walkway.html" coords="1640,491,1640,715,1088,710,1088,802,733,802,728,592,1044,592,1048,482" shape="poly">
+            <area target="" alt="私浴室" title="私浴室" href="./privateBathroom.html" coords="1644,48,2109,316" shape="rect">
+            <area target="" alt="大房" title="大房" href="./room1.html" coords="2341,938,1649,929,1640,324,2113,320,2109,39,2319,31" shape="poly">
+            <area target="" alt="小房" title="小房" href="./room2.html" coords="1806,1363,1083,1359,1092,715,1635,719,1644,934,1798,938" shape="poly">
+        </map>
+    </div>
+    <script>
+      $(document).ready(function(e) {
+        $('map').imageMapResize();
+      });
+    </script>
+  </body>
+</html>
