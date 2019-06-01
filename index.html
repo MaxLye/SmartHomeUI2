@@ -84,7 +84,7 @@
 
     <div class="container">
       <input type='hidden' id=href name='href'>
-      <input type='hidden' id=host name='host'>
+      <input type='hidden' id=hostname name='hostname'>
       <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
 
@@ -106,7 +106,7 @@
   <script>
     $(document).ready(function (e) {
       $('#href').val(window.location.href);
-      $('#host').val(window.location.host);
+      $('#hostname').val(window.location.hostname);
       if (window.location.hostname == "home.ahlye.com") {
         $('#login').attr('action', "http://home.ahlye.com:30888/login");
       }
