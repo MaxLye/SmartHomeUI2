@@ -50,5 +50,12 @@ function eraseCookie(cname) {
 }
 //////////////////////////////////////////////////////////////////////
 function getServerHost(){
-  console.log(window.location.origin);
+  if(window.location.hostname == "home.ahlye.com")
+  {
+    return "http://home.ahlye.com:30888";
+  }
+  else
+  {
+    return "http://192.168.31.16:8000";
+  }
 }
