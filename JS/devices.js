@@ -1,5 +1,4 @@
 function loadDevices(area) {
-  console.log(getServerHost()+"loaditems/" + area);
   $.get(getServerHost()+"loaditems/" + area, function (data) {
     var doc = "";
     console.log(data);
@@ -16,7 +15,6 @@ function loadDevices(area) {
 }
 
 function turnSwitch(EName,area){
-  console.log(getServerHost());
   getServerHost();
   var status = $('#'+EName).prop('checked')?"on":"off";
   $.post(getServerHost()+"action/"+area+"/"+EName+"/"+status,{"token":readCookie("token")}, function(data){
@@ -59,3 +57,7 @@ function getServerHost(){
     return "http://192.168.31.16:8000/";
   }
 }
+
+setTimeout(function(){
+  window.location.reload(1);
+}, 30000);
