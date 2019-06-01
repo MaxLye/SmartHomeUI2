@@ -1,5 +1,6 @@
 var server = "http://home.ahlye.com:30888/"
 function loadDevices(area) {
+  getServerHost();
   $.get(server+"loaditems/" + area, function (data) {
     var doc = "";
     console.log(data);
@@ -16,6 +17,7 @@ function loadDevices(area) {
 }
 
 function turnSwitch(EName,area){
+  getServerHost();
   var status = $('#'+EName).prop('checked')?"on":"off";
   $.post(server+"action/"+area+"/"+EName+"/"+status,{"token":readCookie("token")}, function(data){
     console.log(data);
@@ -47,3 +49,6 @@ function eraseCookie(cname) {
 	createCookie(cname,"",-1);
 }
 //////////////////////////////////////////////////////////////////////
+function getServerHost(){
+  console.log(window.location.origin);
+}
