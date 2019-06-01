@@ -4,6 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="./JS/devices.js"></script>
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -76,15 +77,14 @@
 </head>
 
 <body>
-
-  <!--form action="http://home.ahlye.com:30888/login" method="POST"-->
-  <form action="http://192.168.31.16:8000/login" method="POST">
+  <form id=login action="" method="POST">
     <div class="greetingContainer">
       <h1>Login</h1>
     </div>
 
     <div class="container">
-      <input type='hidden' id=hostname name='host' value=''>
+      <input type='hidden' id=href name='href'>
+      <input type='hidden' id=host name='host'>
       <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
 
@@ -105,8 +105,16 @@
 
   <script>
     $(document).ready(function (e) {
-      $('#hostname').val(window.location.href);
+      $('#href').val(window.location.href);
+      $('#host').val(window.location.host);
+      if (window.location.hostname == "home.ahlye.com") {
+        $('#login').attr('action', "http://home.ahlye.com:30888/login");
+      }
+      else {
+        $('#login').attr('action', "http://192.168.31.16:8000/login");
+      }
     });
+    eraseCookie('token');
   </script>
 
 </body>
